@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الخدمات المصرفية الإلكترونية</title>
+
+<link rel="manifest" href="manifest.json">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div id="app">
+
+<!-- ===================================================== -->
+<!-- HEADER -->
+<!-- ===================================================== -->
+
+<header class="top-header">
+
+<div class="top-left">
+
+<button class="lang-btn" id="langBtn">
+
+🌐 English
+
+</button>
+
+<button class="logout-btn" id="logoutBtn">
+
+خروج
+
+</button>
+
+</div>
+
+
+<div class="logo-area">
+
+<img src="assets/logo.png" class="logo">
+
+<div class="logo-text">
+
+<h2>المملكة القابضة</h2>
+
+<span>صندوق الاستثمار</span>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="sub-title">
+
+الخدمات المصرفية الإلكترونية الشاملة
+
+</div>
+
+</div>
+
+</header>
+
+<!-- ===================================================== -->
+<!-- MAIN MENU -->
+<!-- ===================================================== -->
+
+<nav class="main-menu">
+
+<div class="menu-item">
+
+🏠
+
+<span>الرئيسية</span>
+
+</div>
+
+<div class="menu-item">
+
+💳
+
+<span>الحسابات</span>
+
+</div>
+
+<div class="menu-item">
+
+🪪
+
+<span>البطاقات</span>
+
+</div>
+
+<div class="menu-item">
+
+🔄
+
+<span>التحويل</span>
+
+</div>
+
+<div class="menu-item">
+
+⚙️
+
+<span>SADAD</span>
+
+</div>
+
+<div class="menu-item">
+
+🏛️
+
+<span>خدمات حكومية</span>
+
+</div>
+
+<div class="menu-item active">
+
+⚡
+
+<span>فوري</span>
+
+</div>
+
+<div class="menu-item">
+
+💰
+
+<span>التمويل</span>
+
+</div>
+
+<div class="menu-item">
+
+👤
+
+<span>الخدمات الذاتية</span>
+
+</div>
+
+</nav>
+
+<!-- ===================================================== -->
+<!-- PAGE -->
+<!-- ===================================================== -->
+
+<div class="page-layout">
+
+<!-- ===================================================== -->
+<!-- SIDEBAR -->
+<!-- ===================================================== -->
+
+<aside class="sidebar">
+
+<div class="box">
+
+<div class="box-title">
+
+فوري
+
+</div>
+
+<ul>
+
+<li>حوالات فورية</li>
+
+<li class="active">
+
+تحويل فوري
+
+</li>
+
+<li>
+
+سجل العمليات
+
+</li>
+
+<li>
+
+إدارة خدمات فوري
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="box">
+
+<div class="box-title">
+
+العمليات المفضلة
+
+</div>
+
+<div class="favorite">
+
+UBL 3RD PARTY HBL
+
+</div>
+
+</div>
+
+<div class="box">
+
+<div class="box-title">
+
+روابط مختصرة
+
+</div>
+
+<div class="empty">
+
+لا توجد روابط مختصرة
+
+</div>
+
+</div>
+
+<div class="box">
+
+<div class="box-title">
+
+للمساعدة
+
+</div>
+
+<div class="help-link">
+
+👤 خدمة العملاء
+
+</div>
+
+<div class="help-link">
+
+✉ رسالة جديدة
+
+</div>
+
+</div>
+
+<div class="box saudi-bank">
+
+<img src="assets/banks.png">
+
+<h4>
+
+البنوك السعودية
+
+</h4>
+
+<span>
+
+Saudi Banks
+
+</span>
+
+</div>
+
+</aside>
+
+<!-- ===================================================== -->
+<!-- CONTENT -->
+<!-- ===================================================== -->
+
+<main class="content">
+
+<div class="breadcrumb">
+
+فوري >
+
+التحويل إلى مستفيد فوري
+
+</div>
+
+<h1>
+
+تحويل فوري
+
+</h1>
+
+<div class="steps">
+
+<div class="step active">
+
+1 التنفيذ
+
+</div>
+
+<div class="step">
+
+2 التأكيد
+
+</div>
+
+<div class="step">
+
+3 التعميد
+
+</div>
+
+<div class="step">
+
+4 النتيجة
+
+</div>
+
+</div>
+
+<!-- يبدأ نموذج التحويل هنا -->
+<section class="transfer-card">
+
+
+<div class="card-header">
+
+<h2>
+بيانات التحويل الفوري
+</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+من الحساب
+</label>
+
+<select>
+
+<option>
+اختر الحساب
+</option>
+
+<option>
+الحساب الجاري ****4521
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+إلى بنك
+</label>
+
+<select>
+
+<option>
+اختر البنك
+</option>
+
+<option>
+البنك الأهلي
+</option>
+
+<option>
+مصرف الراجحي
+</option>
+
+<option>
+بنك الرياض
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+رقم حساب المستفيد
+</label>
+
+<input 
+type="text"
+placeholder="أدخل رقم الحساب">
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+اسم المستفيد
+</label>
+
+<input 
+type="text"
+placeholder="اسم المستفيد">
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+المبلغ
+</label>
+
+<input 
+type="number"
+placeholder="أدخل المبلغ">
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+العملة
+</label>
+
+<select>
+
+<option>
+ريال سعودي
+</option>
+
+<option>
+دولار أمريكي
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+
+<div class="message-box">
+
+<label>
+الغرض من التحويل
+</label>
+
+<textarea
+placeholder="اكتب سبب التحويل">
+</textarea>
+
+</div>
+
+
+
+<div class="notice">
+
+⚠️ يرجى التأكد من صحة بيانات المستفيد قبل تنفيذ العملية
+
+</div>
+
+
+
+<div class="actions">
+
+<button class="cancel">
+
+إلغاء
+
+</button>
+
+
+<button class="next">
+
+متابعة
+
+</button>
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- ===================================================== -->
+<!-- FOOTER INFO -->
+<!-- ===================================================== -->
+
+
+<section class="security-box">
+
+
+<div>
+
+🔒
+
+<h3>
+أمانك أولاً
+</h3>
+
+<p>
+نستخدم أحدث تقنيات الحماية للحفاظ على معلوماتك المصرفية
+</p>
+
+</div>
+
+
+
+<div>
+
+☎️
+
+<h3>
+الدعم الفني
+</h3>
+
+<p>
+متوفر على مدار الساعة لخدمتك
+</p>
+
+</div>
+
+
+
+<div>
+
+🌐
+
+<h3>
+الخدمات الإلكترونية
+</h3>
+
+<p>
+إدارة حساباتك بسهولة وأمان
+</p>
+
+</div>
+
+
+</section>
+
+
+
+</main>
+
+
+</div>
+
+
+
+
+<!-- ===================================================== -->
+<!-- FOOTER -->
+<!-- ===================================================== -->
+
+
+<footer class="footer">
+
+
+<div>
+
+© 2026 المملكة القابضة - جميع الحقوق محفوظة
+
+</div>
+
+
+<div>
+
+الشروط والأحكام | سياسة الخصوصية | اتصل بنا
+
+</div>
+
+
+</footer>
+
+
+
+</div>
+
+
+
+<script src="js/app.js"></script>
+
+
+</body>
+
+</html>
