@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الرئيسية | البنك السعودي</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- ===== القائمة الجانبية ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">🏦</div>
+        <div>
+          <div class="brand-text">البنك السعودي</div>
+          <div class="brand-sub">نظام الخدمات المصرفية</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">القائمة الرئيسية</div>
+          <a href="index.html" class="nav-item active" data-page="index">
+            <span class="icon">📊</span>
+            <span>الرئيسية</span>
+          </a>
+          <a href="accounts.html" class="nav-item" data-page="accounts">
+            <span class="icon">💰</span>
+            <span>حساباتي</span>
+          </a>
+          <a href="cards.html" class="nav-item" data-page="cards">
+            <span class="icon">💳</span>
+            <span>البطاقات</span>
+          </a>
+          <a href="transfers.html" class="nav-item" data-page="transfers">
+            <span class="icon">⚡</span>
+            <span>التحويلات</span>
+          </a>
+          <a href="bills.html" class="nav-item" data-page="bills">
+            <span class="icon">📋</span>
+            <span>الفواتير</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الخدمات</div>
+          <a href="government.html" class="nav-item" data-page="government">
+            <span class="icon">🏛️</span>
+            <span>الخدمات الحكومية</span>
+          </a>
+          <a href="financing.html" class="nav-item" data-page="financing">
+            <span class="icon">💼</span>
+            <span>التمويل</span>
+          </a>
+          <a href="investments.html" class="nav-item" data-page="investments">
+            <span class="icon">📈</span>
+            <span>الاستثمارات</span>
+          </a>
+          <a href="capital.html" class="nav-item" data-page="capital">
+            <span class="icon">🏢</span>
+            <span>الجزيرة كابيتال</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الإعدادات</div>
+          <a href="profile.html" class="nav-item" data-page="profile">
+            <span class="icon">👤</span>
+            <span>الملف الشخصي</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== المحتوى الرئيسي ===== -->
+    <main class="main-content">
+      <!-- الهيدر -->
+      <header class="top-header">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+          <h1 class="header-title">الخدمات المصرفية 💰</h1>
+        </div>
+        <div class="header-actions">
+          <button class="header-btn" onclick="showToast('لا توجد إشعارات جديدة','info')">🔔</button>
+          <button class="header-btn" onclick="showToast('قريباً','info')">⚙️</button>
+          <div class="user-profile" onclick="location.href='profile.html'">
+            <div class="user-avatar">و</div>
+            <div class="user-info">
+              <div class="user-name">الوليد بن طلال</div>
+              <div class="user-role">عميل بريميوم</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- المحتوى -->
+      <div class="page-content">
+        <!-- الإحصائيات -->
+        <div class="stats-grid">
+          <div class="stat-card animate-fade-in">
+            <div class="stat-header">
+              <span class="stat-label">إجمالي الأرصدة</span>
+              <div class="stat-icon gold">💰</div>
+            </div>
+            <div class="stat-value" style="color:var(--accent-gold-light);">SAR 2.4M</div>
+            <div class="stat-change up">📈 +2.3% هذا الشهر</div>
+          </div>
+          <div class="stat-card animate-fade-in">
+            <div class="stat-header">
+              <span class="stat-label">الاستثمارات</span>
+              <div class="stat-icon green">📈</div>
+            </div>
+            <div class="stat-value" style="color:var(--accent-green);">SAR 850K</div>
+            <div class="stat-change up">📈 +5.1%</div>
+          </div>
+          <div class="stat-card animate-fade-in">
+            <div class="stat-header">
+              <span class="stat-label">البطاقات</span>
+              <div class="stat-icon blue">💳</div>
+            </div>
+            <div class="stat-value" style="color:var(--accent-blue);">3 بطاقات</div>
+            <div class="stat-change up">جميعها نشطة</div>
+          </div>
+          <div class="stat-card animate-fade-in">
+            <div class="stat-header">
+              <span class="stat-label">فواتير معلقة</span>
+              <div class="stat-icon red">📋</div>
+            </div>
+            <div class="stat-value" style="color:var(--accent-red);">4 فواتير</div>
+            <div class="stat-change down">مستحقة الدفع</div>
+          </div>
+        </div>
+
+        <!-- الخدمات السريعة -->
+        <div class="section-card" style="margin-bottom:24px;">
+          <div class="section-card-header">
+            <div class="section-card-title"><span class="icon">⚡</span> الخدمات السريعة</div>
+          </div>
+          <div class="section-card-body">
+            <div class="quick-services">
+              <a href="instant-transfer.html" class="quick-service-item">
+                <div class="quick-service-icon">⚡</div>
+                <span class="quick-service-label">تحويل فوري</span>
+              </a>
+              <a href="accounts.html" class="quick-service-item">
+                <div class="quick-service-icon">💳</div>
+                <span class="quick-service-label">حساباتي</span>
+              </a>
+              <a href="bills.html" class="quick-service-item">
+                <div class="quick-service-icon">⚙️</div>
+                <span class="quick-service-label">SADAD</span>
+              </a>
+              <a href="government.html" class="quick-service-item">
+                <div class="quick-service-icon">🏛️</div>
+                <span class="quick-service-label">خدمات حكومية</span>
+              </a>
+              <a href="financing.html" class="quick-service-item">
+                <div class="quick-service-icon">💰</div>
+                <span class="quick-service-label">التمويل</span>
+              </a>
+              <a href="capital.html" class="quick-service-item">
+                <div class="quick-service-icon">📊</div>
+                <span class="quick-service-label">الجزيرة كابيتال</span>
+              </a>
+              <a href="investments.html" class="quick-service-item">
+                <div class="quick-service-icon">📈</div>
+                <span class="quick-service-label">الاستثمارات</span>
+              </a>
+              <a href="profile.html" class="quick-service-item">
+                <div class="quick-service-icon">👤</div>
+                <span class="quick-service-label">الملف الشخصي</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- الأخبار + الأرصدة -->
+        <div class="cards-grid">
+          <div class="section-card" style="grid-column: span 2;">
+            <div class="section-card-header">
+              <div class="section-card-title"><span class="icon">📰</span> أخبار السوق</div>
+            </div>
+            <div class="section-card-body">
+              <div class="news-list">
+                <div class="news-item">
+                  <div class="news-icon">📈</div>
+                  <div class="news-content">
+                    <div class="news-title">ارتفاع مؤشر تداول بنسبة 1.8% في تداولات اليوم</div>
+                    <div class="news-meta">تداول | منذ ساعتين</div>
+                  </div>
+                </div>
+                <div class="news-item">
+                  <div class="news-icon">🏦</div>
+                  <div class="news-content">
+                    <div class="news-title">مؤسسة النقد تُعلن عن حزمة تحفيزية جديدة للقطاع المصرفي</div>
+                    <div class="news-meta">أموال الغد | منذ 4 ساعات</div>
+                  </div>
+                </div>
+                <div class="news-item">
+                  <div class="news-icon">💵</div>
+                  <div class="news-content">
+                    <div class="news-title">أسعار الصرف: الدولار يتراجع أمام الريال في التعاملات الصباحية</div>
+                    <div class="news-meta">الاقتصادية | منذ 6 ساعات</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="section-card-header">
+              <div class="section-card-title"><span class="icon">💰</span> إجمالي الأرصدة</div>
+            </div>
+            <div class="section-card-body">
+              <div style="text-align:center;margin-bottom:20px;">
+                <div style="font-size:28px;font-weight:700;color:var(--accent-gold-light);margin-bottom:8px;">SAR 2,254,412,540</div>
+                <div style="font-size:12px;color:var(--text-muted);">إجمالي جميع الحسابات</div>
+              </div>
+              <div style="display:flex;justify-content:space-around;padding-top:16px;border-top:1px solid var(--border-color);">
+                <div style="text-align:center;">
+                  <div style="font-size:20px;margin-bottom:4px;">📥</div>
+                  <div style="font-size:13px;font-weight:600;">SAR 185,000,000</div>
+                  <div style="font-size:11px;color:var(--text-muted);">إيداعات الشهر</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="font-size:20px;margin-bottom:4px;">📤</div>
+                  <div style="font-size:13px;font-weight:600;">SAR 67,000,000</div>
+                  <div style="font-size:11px;color:var(--text-muted);">صادر الشهر</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- الحسابات -->
+        <div class="section-card" style="margin-top:24px;">
+          <div class="section-card-header">
+            <div class="section-card-title"><span class="icon">🏦</span> حساباتي</div>
+            <a href="accounts.html" style="font-size:13px;color:var(--accent-gold);text-decoration:none;">عرض الكل ←</a>
+          </div>
+          <div class="section-card-body">
+            <div class="account-item">
+              <div class="account-icon" style="background:rgba(21,101,192,0.1);">👑</div>
+              <div class="account-info">
+                <div class="account-name">الحساب الجاري الذهبي</div>
+                <div class="account-number">SA29 8000 0000 6080 1016 7519</div>
+              </div>
+              <div class="account-balance">
+                <div class="account-amount">SAR 940,100,450,000</div>
+                <div class="account-status">متاح</div>
+              </div>
+            </div>
+            <div class="account-item">
+              <div class="account-icon" style="background:rgba(123,31,162,0.1);">💎</div>
+              <div class="account-info">
+                <div class="account-name">حساب التوفير البلاتيني</div>
+                <div class="account-number">SA29 8000 0000 6080 2027 8620</div>
+              </div>
+              <div class="account-balance">
+                <div class="account-amount">SAR 85,000,000,540</div>
+                <div class="account-status">متاح</div>
+              </div>
+            </div>
+            <div class="account-item">
+              <div class="account-icon" style="background:rgba(66,165,245,0.1);">🏢</div>
+              <div class="account-info">
+                <div class="account-name">الحساب التجاري</div>
+                <div class="account-number">SA29 8000 0000 6080 3038 9731</div>
+              </div>
+              <div class="account-balance">
+                <div class="account-amount">USD 110,120,000,000</div>
+                <div class="account-status">متاح</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- آخر العمليات -->
+        <div class="section-card" style="margin-top:24px;">
+          <div class="section-card-header">
+            <div class="section-card-title"><span class="icon">📋</span> آخر العمليات</div>
+            <button class="header-btn" id="showMoreBtn" onclick="toggleTransactions()" style="font-size:13px;padding:6px 16px;border-radius:8px;background:var(--accent-gold);color:white;border:none;cursor:pointer;">عرض المزيد</button>
+          </div>
+          <div class="section-card-body">
+            <div class="table-container" id="transactionsContainer">
+              <table class="data-table" id="transactionsTable">
+                <thead>
+                  <tr>
+                    <th>العملية</th>
+                    <th>التاريخ</th>
+                    <th>المبلغ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- الصفوف الأولى مرئية -->
+                  <tr class="txn-row" data-index="0">
+                    <td>
+                      <div class="txn-type">
+                        <div class="txn-icon in">📥</div>
+                        <span>مساعدة - مؤسسة التنمية المستدامة</span>
+                      </div>
+                    </td>
+                    <td>18/07/2026</td>
+                    <td class="txn-amount in">+USD 4,994,069</td>
+                  </tr>
+                  <tr class="txn-row" data-index="1">
+                    <td>
+                      <div class="txn-type">
+                        <div class="txn-icon in">📥</div>
+                        <span>مشروع تعليمي - مؤسسة الفلاحين</span>
+                      </div>
+                    </td>
+                    <td>17/07/2026</td>
+                    <td class="txn-amount in">+USD 1,070,129</td>
+                  </tr>
+                  <tr class="txn-row" data-index="2">
+                    <td>
+                      <div class="txn-type">
+                        <div class="txn-icon out">📤</div>
+                        <span>تحويل - تقوى بنت عبدالله</span>
+                      </div>
+                    </td>
+                    <td>16/07/2026</td>
+                    <td class="txn-amount out">-USD 4,857,911</td>
+                  </tr>
+                  <tr class="txn-row" data-index="3">
+                    <td>
+                      <div class="txn-type">
+                        <div class="txn-icon in">📥</div>
+                        <span>مشروع صحي - مؤسسة الفلاحين</span>
+                      </div>
+                    </td>
+                    <td>15/07/2026</td>
+                    <td class="txn-amount in">+USD 4,587,974</td>
+                  </tr>
+                  <tr class="txn-row" data-index="4">
+                    <td>
+                      <div class="txn-type">
+                        <div class="txn-icon out">📤</div>
+                        <span>تحويل - شيرين بنت أحمد</span>
+                      </div>
+                    </td>
+                    <td>05/07/2026</td>
+                    <td class="txn-amount out">-USD 4,382,935</td>
+                  </tr>
+                  <!-- باقي الصفوف مخفية -->
+                  <tr class="txn-row hidden-row" data-index="5">
+                    <td>
+                      <div class="txn-type">
+                        <div class="txn-icon out">📤</div>
+                        <span>تحويل - لؤي بن طلال</span>
+                      </div>
+                    </td>
+                    <td>03/07/2026</td>
+                    <td class="txn-amount out">-SAR 1,521,379</td>
+                  </tr>
+                  <!-- ... باقي الصفوف كما هي ... -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <span class="toast-icon" id="toastIcon">✓</span>
+    <span id="toastMessage">تمت العملية بنجاح</span>
+  </div>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        sidebarOverlay.classList.toggle('active');
+      });
+    }
+    if (sidebarOverlay) {
+      sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('active');
+      });
+    }
+    function showToast(message, type) {
+      const toast = document.getElementById('toast');
+      const toastIcon = document.getElementById('toastIcon');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      toast.className = 'toast show toast-' + (type || 'success');
+      if (type === 'success') toastIcon.textContent = '✓';
+      else if (type === 'error') toastIcon.textContent = '✕';
+      else toastIcon.textContent = 'ℹ';
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+    function toggleTransactions() {
+      const container = document.getElementById('transactionsContainer');
+      const btn = document.getElementById('showMoreBtn');
+      const card = container.closest('.section-card');
+
+      if (card.classList.contains('transactions-expanded')) {
+        card.classList.remove('transactions-expanded');
+        btn.textContent = 'عرض المزيد';
+        container.scrollTop = 0;
+      } else {
+        card.classList.add('transactions-expanded');
+        btn.textContent = 'عرض أقل';
+      }
+    }
+
+    document.querySelectorAll('.stat-card, .section-card, .account-item, .bill-item').forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.animation = 'fadeIn 0.4s ease ' + (i * 0.05) + 's forwards';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>تأكيد التحويل | البنك السعودي</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* أنماط إضافية خاصة بالتحويلات فقط */
+    .transfer-layout { display: flex; gap: 20px; }
+    .transfer-main { flex: 1; min-width: 0; }
+
+    .transfer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .transfer-card-header {
+      background: var(--nav-gradient);
+      color: white;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .transfer-card-body { padding: 30px 20px; text-align: center; }
+
+    .otp-input {
+      width: 100%;
+      max-width: 250px;
+      padding: 16px;
+      text-align: center;
+      font-size: 24px;
+      letter-spacing: 8px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-weight: 700;
+      margin: 20px 0;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .otp-input:focus { border-color: var(--accent-gold); }
+
+    .bottom-actions { display: flex; gap: 16px; margin-top: 24px; }
+    .btn-cancel, .btn-next {
+      flex: 1;
+      padding: 14px 24px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      color: white;
+      transition: opacity 0.2s;
+    }
+    .btn-cancel { background: var(--bg-hover); color: var(--text-primary); }
+    .btn-next { background: var(--accent-gold); color: white; }
+    .btn-cancel:hover, .btn-next:hover { opacity: 0.85; }
+
+    .view-container { display: none; animation: fadeIn 0.4s ease-in-out; }
+    .view-container.active { display: block; }
+
+    .result-icon { font-size: 70px; margin-bottom: 16px; display: inline-block; }
+    .text-green { color: var(--accent-green); }
+    .text-red { color: var(--accent-red); }
+
+    .failure-reason {
+      background: rgba(123, 31, 162, 0.1);
+      border: 1px solid var(--accent-red);
+      color: var(--text-primary);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .right-sidebar { width: 280px; flex-shrink: 0; }
+    .right-menu {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .right-menu-header {
+      background: var(--nav-gradient);
+      color: white;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .right-menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .highlight-value { color: var(--accent-gold-light); }
+
+    @media (max-width: 1100px) {
+      .right-sidebar { display: none; }
+    }
+    @media (max-width: 768px) {
+      .bottom-actions { flex-direction: column; }
+      .btn-cancel, .btn-next { width: 100%; }
+      .transfer-card-body { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">🏦</div>
+        <div><div class="brand-text">البنك السعودي</div><div class="brand-sub">نظام الخدمات المصرفية</div></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">القائمة الرئيسية</div>
+          <a href="index.html" class="nav-item" data-page="index"><span class="icon">📊</span><span>الرئيسية</span></a>
+          <a href="accounts.html" class="nav-item" data-page="accounts"><span class="icon">💰</span><span>حساباتي</span></a>
+          <a href="cards.html" class="nav-item" data-page="cards"><span class="icon">💳</span><span>البطاقات</span></a>
+          <a href="transfers.html" class="nav-item active" data-page="transfers"><span class="icon">⚡</span><span>التحويلات</span></a>
+          <a href="bills.html" class="nav-item" data-page="bills"><span class="icon">📋</span><span>الفواتير</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الخدمات</div>
+          <a href="government.html" class="nav-item" data-page="government"><span class="icon">🏛️</span><span>الخدمات الحكومية</span></a>
+          <a href="financing.html" class="nav-item" data-page="financing"><span class="icon">💼</span><span>التمويل</span></a>
+          <a href="investments.html" class="nav-item" data-page="investments"><span class="icon">📈</span><span>الاستثمارات</span></a>
+          <a href="capital.html" class="nav-item" data-page="capital"><span class="icon">🏢</span><span>الجزيرة كابيتال</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الإعدادات</div>
+          <a href="profile.html" class="nav-item" data-page="profile"><span class="icon">👤</span><span>الملف الشخصي</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+          <h1 class="header-title">تأكيد التحويل الفوري ⚡</h1>
+        </div>
+        <div class="header-actions">
+          <button class="header-btn" onclick="showToast('لا توجد إشعارات جديدة','info')">🔔</button>
+          <button class="header-btn" onclick="showToast('قريباً','info')">⚙️</button>
+          <div class="user-profile" onclick="location.href='profile.html'">
+            <div class="user-avatar">و</div>
+            <div class="user-info"><div class="user-name">الوليد بن طلال</div><div class="user-role">عميل بريميوم</div></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="transfer-layout">
+          <div class="transfer-main">
+            
+            <!-- شريط حالة المعاملة -->
+            <div class="transfer-steps" id="progressSteps">
+              <div class="step active" id="step1"><div class="step-number">✓</div><div class="step-label">التنفيذ</div></div>
+              <div class="step active" id="step2"><div class="step-number">2</div><div class="step-label">التأكيد</div></div>
+              <div class="step" id="step3"><div class="step-number">3</div><div class="step-label">التعميد</div></div>
+              <div class="step" id="step4"><div class="step-number">4</div><div class="step-label">النتيجة</div></div>
+            </div>
+
+            <!-- ================= VIEW 1: إدخال رمز التأكيد ================= -->
+            <div id="viewOTP" class="view-container active">
+              <div class="transfer-card">
+                <div class="transfer-card-header">رمز التحقق (OTP)</div>
+                <div class="transfer-card-body">
+                  <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 14px;">
+                    لقد تم إرسال رمز التحقق إلى رقم الجوال المسجل لدينا.<br>
+                    الرجاء إدخال الرمز لتأكيد عملية التحويل إلى <strong id="otpBeneficiary" class="highlight-value">---</strong>.
+                  </p>
+                  
+                  <div class="summary-box">
+                    <div class="summary-row">
+                      <span class="summary-label">المبلغ المطلوب تحويله:</span>
+                      <span class="summary-value highlight-value" id="otpAmount">---</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">رسوم التحويل (0.5%):</span>
+                      <span class="summary-value" id="otpFees">---</span>
+                    </div>
+                  </div>
+
+                  <input type="text" id="otpInput" class="otp-input" maxlength="4" placeholder="••••" autocomplete="off" inputmode="text">
+                  <p style="font-size: 12px; color: var(--text-muted);">
+                    تلميح: أدخل 4 أرقام للرفض، أو 4 حروف للنجاح.
+                  </p>
+                </div>
+              </div>
+              <div class="bottom-actions">
+                <button class="btn-cancel" onclick="history.back()">إلغاء وتعديل</button>
+                <button class="btn-next" onclick="verifyOTP()">تأكيد العملية</button>
+              </div>
+            </div>
+
+            <!-- ================= VIEW 2: نجاح العملية ================= -->
+            <div id="viewSuccess" class="view-container">
+              <div class="transfer-card" style="border-color: var(--accent-gold);">
+                <div class="transfer-card-body">
+                  <div class="result-icon text-green">✅</div>
+                  <h2 style="color: var(--accent-gold); margin-bottom: 10px;">تمت عملية التحويل بنجاح</h2>
+                  <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">تم تنفيذ الحوالة الفورية وإيداع المبلغ في حساب المستفيد.</p>
+                  
+                  <div class="summary-box">
+                    <div class="summary-row">
+                      <span class="summary-label">رقم المرجع:</span>
+                      <span class="summary-value">TRX-9876543210</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">المستفيد:</span>
+                      <span class="summary-value" id="successBeneficiary">---</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">البنك المستلم:</span>
+                      <span class="summary-value" id="successBank">---</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">إجمالي المبلغ المحول:</span>
+                      <span class="summary-value highlight-value" id="successAmount">---</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom-actions">
+                <button class="btn-cancel" onclick="location.href='index.html'">العودة للرئيسية</button>
+                <button class="btn-next" style="background: var(--bg-hover); color: var(--text-primary);" onclick="window.print()">🖨️ طباعة الإيصال</button>
+              </div>
+            </div>
+
+            <!-- ================= VIEW 3: فشل العملية ================= -->
+            <div id="viewFailure" class="view-container">
+              <div class="transfer-card" style="border-color: var(--accent-red);">
+                <div class="transfer-card-body">
+                  <div class="result-icon text-red">❌</div>
+                  <h2 style="color: var(--accent-red); margin-bottom: 10px;">فشل إتمام التحويل</h2>
+                  
+                  <div class="failure-reason">
+                    <strong>عذراً، لم يتم تنفيذ العملية للأسباب التالية:</strong><br><br>
+                    لم يتم دفع رسوم التحويل المقررة على هذه المعاملة بقيمة <strong id="failFees" style="background: var(--accent-red); color: white; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-top: 4px;">---</strong>.<br>
+                    يرجى تسديد الرسوم المطلوبة لضمان مرور الحوالة عبر نظام (فوري) بشكل صحيح.
+                  </div>
+
+                  <div class="summary-box">
+                    <div class="summary-row">
+                      <span class="summary-label">حالة العملية:</span>
+                      <span class="summary-value text-red">مرفوضة من النظام</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">محاولة التحويل إلى:</span>
+                      <span class="summary-value" id="failBeneficiary">---</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom-actions">
+                <button class="btn-cancel" onclick="location.href='index.html'">العودة للرئيسية</button>
+                <button class="btn-next" style="background: var(--accent-red);" onclick="location.reload()">إعادة المحاولة</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT SIDEBAR -->
+          <aside class="right-sidebar">
+            <div class="right-menu">
+              <div class="right-menu-header"><span>ملخص العملية</span><span>ℹ️</span></div>
+              <div class="right-menu-item"><span>تاريخ التنفيذ</span><span style="direction: ltr;">2026-07-24</span></div>
+              <div class="right-menu-item"><span>نوع الحوالة</span><span>فورية (24/7)</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon" id="toastIcon">✓</span>
+    <span id="toastMessage">تمت العملية بنجاح</span>
+  </div>
+
+  <script>
+    // ===== SIDEBAR TOGGLE =====
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        sidebarOverlay.classList.toggle('active');
+      });
+    }
+    if (sidebarOverlay) {
+      sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('active');
+      });
+    }
+
+    function showToast(message, type) {
+      const toast = document.getElementById('toast');
+      const toastIcon = document.getElementById('toastIcon');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      toast.className = 'toast show toast-' + (type || 'success');
+      if (type === 'success') toastIcon.textContent = '✓';
+      else if (type === 'error') toastIcon.textContent = '✕';
+      else toastIcon.textContent = 'ℹ';
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    // جلب البيانات من الجلسة
+    let transferData = JSON.parse(sessionStorage.getItem('transferData'));
+    if (!transferData) {
+      transferData = {
+        beneficiaryName: "أحمد بن محمد",
+        transferViaText: "البنك الأهلي",
+        amount: "10,000",
+        currency: "SAR",
+        fees: "SAR 50.00"
+      };
+    }
+
+    // تعبئة البيانات
+    document.getElementById('otpBeneficiary').textContent = transferData.beneficiaryName;
+    document.getElementById('otpAmount').textContent = transferData.currency + ' ' + transferData.amount;
+    document.getElementById('otpFees').textContent = transferData.fees;
+    document.getElementById('successBeneficiary').textContent = transferData.beneficiaryName;
+    document.getElementById('successBank').textContent = transferData.transferViaText;
+    document.getElementById('successAmount').textContent = transferData.currency + ' ' + transferData.amount;
+    document.getElementById('failBeneficiary').textContent = transferData.beneficiaryName;
+    document.getElementById('failFees').textContent = transferData.fees;
+
+    function verifyOTP() {
+      const otpValue = document.getElementById('otpInput').value.trim();
+      const isFourDigits = /^\d{4}$/.test(otpValue);
+      const isFourLetters = /^[a-zA-Zأ-ي]{4}$/.test(otpValue);
+
+      if (isFourDigits) {
+        showFailureView();
+      } else if (isFourLetters) {
+        showSuccessView();
+      } else {
+        showToast("الرجاء إدخال 4 أرقام (للرفض) أو 4 حروف (للنجاح)", "error");
+      }
+    }
+
+    function showSuccessView() {
+      document.getElementById('viewOTP').classList.remove('active');
+      document.getElementById('viewSuccess').classList.add('active');
+      document.getElementById('step3').classList.add('active');
+      document.getElementById('step3').querySelector('.step-number').textContent = '✓';
+      const step4 = document.getElementById('step4');
+      step4.classList.add('active', 'success');
+      step4.querySelector('.step-number').textContent = '✓';
+      showToast("تم التحويل بنجاح ✅", "success");
+    }
+
+    function showFailureView() {
+      document.getElementById('viewOTP').classList.remove('active');
+      document.getElementById('viewFailure').classList.add('active');
+      document.getElementById('step3').classList.add('active');
+      document.getElementById('step3').querySelector('.step-number').textContent = '✓';
+      const step4 = document.getElementById('step4');
+      step4.classList.add('active', 'error');
+      step4.querySelector('.step-number').textContent = '✕';
+      showToast("فشل التحويل ❌", "error");
+    }
+  </script>
+</body>
+</html>

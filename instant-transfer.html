@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>تحويل فوري | البنك السعودي</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* أنماط خاصة بصفحة التحويلات فقط */
+    .top-services-bar {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      overflow-x: auto;
+      margin-bottom: 20px;
+      width: 100%;
+      scrollbar-width: none;
+    }
+    .top-services-bar::-webkit-scrollbar { display: none; }
+    .top-service-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 11px;
+      white-space: nowrap;
+      transition: all 0.2s;
+      min-width: 64px;
+      flex-shrink: 0;
+    }
+    .top-service-btn:hover, .top-service-btn.active {
+      background: var(--bg-hover);
+      color: var(--accent-gold);
+      border-color: var(--accent-gold);
+    }
+    .top-service-btn .icon { font-size: 20px; }
+
+    .transfer-layout { display: flex; gap: 20px; }
+    .transfer-main { flex: 1; min-width: 0; }
+
+    .transfer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .transfer-card-header {
+      background: var(--nav-gradient);
+      color: white;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .transfer-card-body { padding: 20px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    .form-select, .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-select:focus, .form-input:focus {
+      outline: none;
+      border-color: var(--accent-gold);
+    }
+    .form-select optgroup {
+      background: var(--bg-card);
+      color: var(--accent-gold);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .form-select option {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      padding: 8px;
+    }
+
+    .form-row-flex {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    .form-group-flex { flex: 1; min-width: 200px; }
+
+    .add-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+    }
+    .add-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+    .amount-input-wrapper {
+      display: flex;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      position: relative;
+    }
+    .amount-input-wrapper input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 12px 16px;
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      font-family: inherit;
+      min-width: 0;
+    }
+    .amount-input-wrapper input:focus { outline: none; }
+
+    .amount-currency {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 14px;
+      background: var(--nav-gradient);
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      white-space: nowrap;
+      border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+      flex-shrink: 0;
+    }
+    .amount-currency:hover { opacity: 0.9; }
+
+    .currency-wrapper { position: relative; display: inline-block; }
+    .currency-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      z-index: 200;
+      display: none;
+      min-width: 200px;
+      box-shadow: var(--shadow-lg);
+    }
+    .currency-dropdown.show { display: block; }
+    .currency-option {
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+    .currency-option:last-child { border-bottom: none; }
+    .currency-option:hover { background: var(--bg-hover); color: var(--accent-gold); }
+
+    .fees-box {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+    }
+    .fees-label { font-size: 13px; color: var(--text-secondary); }
+    .fees-value { font-size: 16px; font-weight: 700; color: var(--accent-gold-light); }
+
+    .details-card {
+      background: var(--bg-card);
+      border: 2px solid var(--accent-red);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .details-card-header {
+      background: var(--nav-gradient);
+      color: white;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .details-card-body {
+      padding: 24px;
+      text-align: center;
+      line-height: 2;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .details-card-body strong { color: var(--accent-gold-light); }
+    .highlight-box {
+      display: inline-block;
+      background: rgba(21,101,192,0.1);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: var(--accent-gold-light);
+    }
+
+    .bottom-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .btn-cancel {
+      flex: 1;
+      padding: 14px 24px;
+      background: var(--bg-hover);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-next {
+      flex: 1;
+      padding: 14px 24px;
+      background: var(--nav-gradient);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-next:not(:disabled):hover { opacity: 0.9; }
+
+    .right-sidebar { width: 280px; flex-shrink: 0; }
+    .right-menu {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .right-menu-header {
+      background: var(--nav-gradient);
+      color: white;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .right-menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .right-menu-item:hover, .right-menu-item.active {
+      background: var(--bg-hover);
+      color: var(--accent-gold);
+    }
+    .right-menu-item:last-child { border-bottom: none; }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .checkbox-label input { width: 18px; height: 18px; accent-color: var(--accent-gold); flex-shrink: 0; }
+
+    @media (max-width: 1100px) {
+      .right-sidebar { display: none; }
+    }
+    @media (max-width: 768px) {
+      .top-services-bar { padding: 8px 12px; }
+      .top-service-btn { padding: 6px 10px; min-width: 56px; font-size: 10px; }
+      .form-row-flex { flex-direction: column; gap: 12px; }
+      .form-group-flex { width: 100%; min-width: auto; }
+      .bottom-actions { flex-direction: column; gap: 12px; }
+      .transfer-card-body { padding: 16px; }
+      .details-card-body { padding: 16px; font-size: 13px; }
+      .amount-currency { padding: 0 10px; font-size: 12px; }
+    }
+    @media (max-width: 400px) {
+      .header-title { font-size: 14px; }
+      .amount-input-wrapper input { font-size: 14px; padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">🏦</div>
+        <div><div class="brand-text">البنك السعودي</div><div class="brand-sub">نظام الخدمات المصرفية</div></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">القائمة الرئيسية</div>
+          <a href="index.html" class="nav-item" data-page="index"><span class="icon">📊</span><span>الرئيسية</span></a>
+          <a href="accounts.html" class="nav-item" data-page="accounts"><span class="icon">💰</span><span>حساباتي</span></a>
+          <a href="cards.html" class="nav-item" data-page="cards"><span class="icon">💳</span><span>البطاقات</span></a>
+          <a href="transfers.html" class="nav-item active" data-page="transfers"><span class="icon">⚡</span><span>التحويلات</span></a>
+          <a href="bills.html" class="nav-item" data-page="bills"><span class="icon">📋</span><span>الفواتير</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الخدمات</div>
+          <a href="government.html" class="nav-item" data-page="government"><span class="icon">🏛️</span><span>الخدمات الحكومية</span></a>
+          <a href="financing.html" class="nav-item" data-page="financing"><span class="icon">💼</span><span>التمويل</span></a>
+          <a href="investments.html" class="nav-item" data-page="investments"><span class="icon">📈</span><span>الاستثمارات</span></a>
+          <a href="capital.html" class="nav-item" data-page="capital"><span class="icon">🏢</span><span>الجزيرة كابيتال</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الإعدادات</div>
+          <a href="profile.html" class="nav-item" data-page="profile"><span class="icon">👤</span><span>الملف الشخصي</span></a>
+        </div>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+          <h1 class="header-title">تحويل فوري ⚡</h1>
+        </div>
+        <div class="header-actions">
+          <button class="header-btn" onclick="showToast('لا توجد إشعارات جديدة','info')">🔔</button>
+          <button class="header-btn" onclick="showToast('قريباً','info')">⚙️</button>
+          <div class="user-profile" onclick="location.href='profile.html'">
+            <div class="user-avatar">و</div>
+            <div class="user-info"><div class="user-name">الوليد بن طلال</div><div class="user-role">عميل بريميوم</div></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- شريط الخدمات السريعة -->
+        <div class="top-services-bar">
+          <a href="index.html" class="top-service-btn"><span class="icon">🏠</span><span>الرئيسية</span></a>
+          <a href="accounts.html" class="top-service-btn"><span class="icon">📋</span><span>الحسابات</span></a>
+          <a href="cards.html" class="top-service-btn"><span class="icon">💳</span><span>البطاقات</span></a>
+          <a href="transfers.html" class="top-service-btn active"><span class="icon">⚡</span><span>التحويل</span></a>
+          <a href="bills.html" class="top-service-btn"><span class="icon">⚙️</span><span>SADAD</span></a>
+          <a href="government.html" class="top-service-btn"><span class="icon">🏛️</span><span>خدمات حكومية</span></a>
+          <a href="capital.html" class="top-service-btn"><span class="icon">🏢</span><span>الجزيرة كابيتال</span></a>
+          <a href="financing.html" class="top-service-btn"><span class="icon">💰</span><span>التمويل</span></a>
+          <a href="profile.html" class="top-service-btn"><span class="icon">👤</span><span>الخدمات الذاتية</span></a>
+        </div>
+
+        <div class="transfer-layout">
+          <div class="transfer-main">
+            <div style="text-align:center;margin-bottom:16px;">
+              <div style="font-size:14px;color:var(--accent-gold);font-weight:600;">فوري ← التحويل إلى مستفيد فوري</div>
+              <div style="font-size:22px;font-weight:700;margin-top:8px;color:var(--text-primary);">⭐ تحويل فوري</div>
+            </div>
+
+            <!-- خطوات التحويل -->
+            <div class="transfer-steps">
+              <div class="step active"><div class="step-number">1</div><div class="step-label">التنفيذ</div></div>
+              <div class="step"><div class="step-number">2</div><div class="step-label">التأكيد</div></div>
+              <div class="step"><div class="step-number">3</div><div class="step-label">التعميد</div></div>
+              <div class="step"><div class="step-number">4</div><div class="step-label">النتيجة</div></div>
+            </div>
+
+            <!-- بطاقة: إلى -->
+            <div class="transfer-card">
+              <div class="transfer-card-header"><span>إلى</span></div>
+              <div class="transfer-card-body">
+                <div class="form-row-flex">
+                  <div class="form-group-flex">
+                    <label class="form-label">* التحويل بواسطة</label>
+                    <select class="form-select" id="transferVia">
+                      <optgroup label="🏦 البنوك السعودية">
+                        <option value="alrajhi">بنك الراجحي</option>
+                        <option value="alahli">البنك الأهلي السعودي</option>
+                        <option value="riyad">بنك الرياض</option>
+                        <option value="albilad">بنك البلاد</option>
+                        <option value="aljazira">بنك الجزيرة</option>
+                        <option value="sab">بنك ساب</option>
+                        <option value="anb">البنك العربي الوطني</option>
+                        <option value="bsf">بنك السعودي الفرنسي</option>
+                        <option value="saib">بنك السعودي للاستثمار</option>
+                        <option value="alinma">بنك الإنماء</option>
+                        <option value="albaraka">بنك البركة</option>
+                        <option value="gib">بنك الخليج الدولي</option>
+                      </optgroup>
+                      <optgroup label="🌍 خدمات تحويل دولية">
+                        <option value="western_union">ويسترن يونيون</option>
+                        <option value="moneygram">موني جرام</option>
+                        <option value="ria">ريا فايننشال</option>
+                        <option value="wise">وايز</option>
+                        <option value="remitly">ريميتلي</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <div class="form-group-flex">
+                    <label class="form-label">* اسم المستفيد</label>
+                    <input type="text" class="form-input" id="beneficiaryName" placeholder="أدخل اسم المستفيد بالكامل" maxlength="100">
+                  </div>
+                </div>
+                <div class="form-row-flex">
+                  <div class="form-group-flex">
+                    <label class="form-label">رقم الحساب / الآيبان</label>
+                    <input type="text" class="form-input" id="beneficiaryAccount" placeholder="SA00 0000 0000 0000 0000 0000" maxlength="34">
+                  </div>
+                  <div class="form-group-flex">
+                    <label class="form-label">رقم الهاتف (اختياري)</label>
+                    <input type="tel" class="form-input" id="beneficiaryPhone" placeholder="+966 5X XXX XXXX" maxlength="20">
+                  </div>
+                </div>
+                <button class="add-btn" onclick="showToast('قريباً','info')"><span style="font-size:18px;">+</span> إضافة مستفيد جديد</button>
+              </div>
+            </div>
+
+            <!-- بطاقة: من -->
+            <div class="transfer-card">
+              <div class="transfer-card-header"><span>من</span></div>
+              <div class="transfer-card-body">
+                <div class="form-group">
+                  <label class="form-label">* من حساب</label>
+                  <select class="form-select" id="fromAccount">
+                    <option value="waleed">مؤسسة الوليد بن طلال للإنسانية</option>
+                    <option value="gold">الحساب الجاري الذهبي</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">* المبلغ</label>
+                  <div class="amount-input-wrapper">
+                    <div class="currency-wrapper">
+                      <button type="button" class="amount-currency" id="currencyBtn" onclick="toggleCurrency()">▼ USD 🇺🇸</button>
+                      <div class="currency-dropdown" id="currencyDropdown">
+                        <div class="currency-option" onclick="setCurrency('USD','🇺🇸')">🇺🇸 USD - دولار أمريكي</div>
+                        <div class="currency-option" onclick="setCurrency('SAR','🇸🇦')">🇸🇦 SAR - ريال سعودي</div>
+                        <div class="currency-option" onclick="setCurrency('EUR','🇪🇺')">🇪🇺 EUR - يورو</div>
+                      </div>
+                    </div>
+                    <input type="text" id="amount" value="" placeholder="0.00" inputmode="decimal">
+                  </div>
+                </div>
+                <div class="fees-box">
+                  <span class="fees-label">رسوم التحويل (0.5%): </span>
+                  <span class="fees-value" id="feesDisplay">USD 0.00</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- بطاقة التفاصيل -->
+            <div class="details-card">
+              <div class="details-card-header">3. تفاصيل التحويل</div>
+              <div class="details-card-body">
+                <div>سيستم نظام الإجراءات لازم سرعات التنفيذ خلال 24 ساعة</div>
+                <div>الموافقة على نظام مراقبة البنوك بالصيغة المرافقة لهذا</div>
+                <div>نظام الإيداعات والتحويلات المالية</div>
+                <div style="margin:16px 0;"><strong>بيانات المستفيد</strong></div>
+                <div>اسم الحالة التي تم الموافقة: <strong id="detailName">—</strong></div>
+                <div style="margin:12px 0;">
+                  يتم صرف المنحة المقدرة بمبلغ وقدره <span class="highlight-box" id="detailAmount">USD 0.00</span> لاغير
+                </div>
+                <div>المالية إيداع المنحة بعد استكمال ما تم التوجيه به للمستفيد:</div>
+                <div style="margin-top:8px;"><strong id="detailName2">—</strong></div>
+                <div style="margin-top:16px;">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="agreeTerms">
+                    <span>لقد قرأت وافقت على <a href="#" class="link-gold">الشروط والأحكام الخاصة</a></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- الأزرار -->
+            <div class="bottom-actions">
+              <button class="btn-cancel" onclick="location.href='transfers.html'">إلغاء</button>
+              <button class="btn-next" id="btnNext" onclick="goToConfirm()" disabled>متابعة ←</button>
+            </div>
+          </div>
+
+          <!-- القائمة الجانبية اليمنى -->
+          <aside class="right-sidebar">
+            <div class="right-menu">
+              <div class="right-menu-header"><span>فوري</span><span>▼</span></div>
+              <div class="right-menu-item"><span>حوالات فورية</span><span>◀</span></div>
+              <div class="right-menu-item active"><span>تحويل فوري</span><span>▶</span></div>
+              <div class="right-menu-item"><span>سجل العمليات</span><span>◀</span></div>
+              <div class="right-menu-item"><span>إدارة خدمات فوري</span><span>◀</span></div>
+            </div>
+            <div class="right-menu">
+              <div class="right-menu-header"><span>العمليات المفضلة</span><span>▼</span></div>
+              <div class="right-menu-item"><span>UBL 3RD PARTY HBL</span><span>◀</span></div>
+            </div>
+            <div class="right-menu">
+              <div class="right-menu-header"><span>روابط مختصرة</span><span>▼</span></div>
+              <div class="right-menu-item" style="justify-content:center;color:var(--text-muted);">لا توجد روابط مختصرة</div>
+            </div>
+            <div class="right-menu">
+              <div class="right-menu-header"><span>للمساعدة</span></div>
+              <div class="right-menu-item"><span>خدمة العملاء</span><span>👤</span></div>
+              <div class="right-menu-item"><span>رسالة جديدة</span><span>✉</span></div>
+            </div>
+            <div style="text-align:center;padding:20px;background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius);">
+              <div style="font-size:32px;margin-bottom:8px;">🏦</div>
+              <div style="font-weight:700;color:var(--accent-gold);">البنوك السعودية</div>
+              <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Saudi Banks</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"><span class="toast-icon" id="toastIcon">✓</span><span id="toastMessage">تمت العملية بنجاح</span></div>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        sidebarOverlay.classList.toggle('active');
+      });
+    }
+    if (sidebarOverlay) {
+      sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('active');
+      });
+    }
+
+    function showToast(message, type) {
+      const toast = document.getElementById('toast');
+      const toastIcon = document.getElementById('toastIcon');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      toast.className = 'toast show toast-' + (type || 'success');
+      if (type === 'success') toastIcon.textContent = '✓';
+      else if (type === 'error') toastIcon.textContent = '✕';
+      else toastIcon.textContent = 'ℹ';
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    let currentCurrency = 'USD';
+    let currentFlag = '🇺🇸';
+
+    function toggleCurrency() {
+      document.getElementById('currencyDropdown').classList.toggle('show');
+    }
+    function setCurrency(code, flag) {
+      currentCurrency = code;
+      currentFlag = flag;
+      document.getElementById('currencyBtn').innerHTML = '▼ ' + code + ' ' + flag;
+      document.getElementById('currencyDropdown').classList.remove('show');
+      updateAmountDisplay();
+    }
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.currency-wrapper')) {
+        document.getElementById('currencyDropdown').classList.remove('show');
+      }
+    });
+
+    const amountInput = document.getElementById('amount');
+    const feesDisplay = document.getElementById('feesDisplay');
+    const detailAmount = document.getElementById('detailAmount');
+    const detailName = document.getElementById('detailName');
+    const detailName2 = document.getElementById('detailName2');
+    const beneficiaryName = document.getElementById('beneficiaryName');
+    const btnNext = document.getElementById('btnNext');
+    const agreeTerms = document.getElementById('agreeTerms');
+
+    function updateAmountDisplay() {
+      let val = amountInput.value.replace(/,/g, '');
+      let num = parseFloat(val);
+      if (!isNaN(num) && num > 0) {
+        let formatted = num.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        let fees = (num * 0.005).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        feesDisplay.textContent = currentCurrency + ' ' + fees;
+        detailAmount.textContent = currentCurrency + ' ' + formatted;
+      } else {
+        feesDisplay.textContent = currentCurrency + ' 0.00';
+        detailAmount.textContent = currentCurrency + ' 0.00';
+      }
+    }
+
+    amountInput.addEventListener('input', function() {
+      let raw = this.value.replace(/[^0-9.]/g, '');
+      let parts = raw.split('.');
+      if (parts.length > 2) {
+        raw = parts[0] + '.' + parts.slice(1).join('');
+      }
+      this.value = raw;
+      updateAmountDisplay();
+      validateForm();
+    });
+
+    amountInput.addEventListener('blur', function() {
+      let val = this.value.replace(/,/g, '');
+      let num = parseFloat(val);
+      if (!isNaN(num) && num > 0) {
+        this.value = num.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+      }
+      updateAmountDisplay();
+    });
+
+    beneficiaryName.addEventListener('input', function() {
+      let name = this.value.trim() || '—';
+      detailName.textContent = name;
+      detailName2.textContent = name;
+      validateForm();
+    });
+
+    agreeTerms.addEventListener('change', validateForm);
+
+    function validateForm() {
+      const hasName = beneficiaryName.value.trim().length > 0;
+      const hasAmount = parseFloat(amountInput.value.replace(/,/g, '')) > 0;
+      const hasAgree = agreeTerms.checked;
+      btnNext.disabled = !(hasName && hasAmount && hasAgree);
+    }
+
+    function goToConfirm() {
+      if (btnNext.disabled) return;
+      const data = {
+        transferVia: document.getElementById('transferVia').value,
+        transferViaText: document.getElementById('transferVia').options[document.getElementById('transferVia').selectedIndex].text,
+        beneficiaryName: beneficiaryName.value,
+        beneficiaryAccount: document.getElementById('beneficiaryAccount').value,
+        beneficiaryPhone: document.getElementById('beneficiaryPhone').value,
+        fromAccount: document.getElementById('fromAccount').value,
+        fromAccountText: document.getElementById('fromAccount').options[document.getElementById('fromAccount').selectedIndex].text,
+        amount: amountInput.value,
+        currency: currentCurrency,
+        fees: feesDisplay.textContent
+      };
+      sessionStorage.setItem('transferData', JSON.stringify(data));
+      location.href = 'instant-transfer.html';
+    }
+  </script>
+</body>
+</html>

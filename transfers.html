@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التحويلات | البنك السعودي</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">🏦</div>
+        <div><div class="brand-text">البنك السعودي</div><div class="brand-sub">نظام الخدمات المصرفية</div></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">القائمة الرئيسية</div>
+          <a href="index.html" class="nav-item" data-page="index"><span class="icon">📊</span><span>الرئيسية</span></a>
+          <a href="accounts.html" class="nav-item" data-page="accounts"><span class="icon">💰</span><span>حساباتي</span></a>
+          <a href="cards.html" class="nav-item" data-page="cards"><span class="icon">💳</span><span>البطاقات</span></a>
+          <a href="transfers.html" class="nav-item active" data-page="transfers"><span class="icon">⚡</span><span>التحويلات</span></a>
+          <a href="bills.html" class="nav-item" data-page="bills"><span class="icon">📋</span><span>الفواتير</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الخدمات</div>
+          <a href="government.html" class="nav-item" data-page="government"><span class="icon">🏛️</span><span>الخدمات الحكومية</span></a>
+          <a href="financing.html" class="nav-item" data-page="financing"><span class="icon">💼</span><span>التمويل</span></a>
+          <a href="investments.html" class="nav-item" data-page="investments"><span class="icon">📈</span><span>الاستثمارات</span></a>
+          <a href="capital.html" class="nav-item" data-page="capital"><span class="icon">🏢</span><span>الجزيرة كابيتال</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الإعدادات</div>
+          <a href="profile.html" class="nav-item" data-page="profile"><span class="icon">👤</span><span>الملف الشخصي</span></a>
+        </div>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <main class="main-content">
+      <header class="top-header">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+          <h1 class="header-title">التحويلات ⚡</h1>
+        </div>
+        <div class="header-actions">
+          <button class="header-btn" onclick="showToast('لا توجد إشعارات جديدة','info')">🔔</button>
+          <button class="header-btn" onclick="showToast('قريباً','info')">⚙️</button>
+          <div class="user-profile" onclick="location.href='profile.html'">
+            <div class="user-avatar">و</div>
+            <div class="user-info"><div class="user-name">الوليد بن طلال</div><div class="user-role">عميل بريميوم</div></div>
+          </div>
+        </div>
+      </header>
+      <div class="page-content">
+        <!-- خيارات التحويل -->
+        <div class="cards-grid card-grid-2">
+          <a href="instant-transfer.html" class="finance-card" style="border-color:var(--accent-gold);">
+            <div class="finance-icon" style="background:rgba(21,101,192,0.1);">⚡</div>
+            <div class="finance-title">تحويل فوري</div>
+            <div class="finance-desc">أقل من 60 ثانية</div>
+          </a>
+          <div class="finance-card" onclick="showToast('قريباً','info')">
+            <div class="finance-icon" style="background:rgba(66,165,245,0.1);">🌍</div>
+            <div class="finance-title">تحويل دولي</div>
+            <div class="finance-desc">SWIFT/IBAN</div>
+          </div>
+          <div class="finance-card" onclick="showToast('قريباً','info')">
+            <div class="finance-icon" style="background:rgba(123,31,162,0.1);">🏦</div>
+            <div class="finance-title">تحويل محلي</div>
+            <div class="finance-desc">ACH / SARIE</div>
+          </div>
+          <div class="finance-card" onclick="showToast('قريباً','info')">
+            <div class="finance-icon" style="background:rgba(26,35,126,0.1);">📅</div>
+            <div class="finance-title">تحويل مجدول</div>
+            <div class="finance-desc">حدد موعداً مسبقاً</div>
+          </div>
+          <div class="finance-card" onclick="showToast('قريباً','info')">
+            <div class="finance-icon" style="background:rgba(21,101,192,0.1);">🔁</div>
+            <div class="finance-title">تحويل دوري</div>
+            <div class="finance-desc">تلقائي كل شهر</div>
+          </div>
+          <div class="finance-card" onclick="showToast('قريباً','info')">
+            <div class="finance-icon" style="background:rgba(66,165,245,0.1);">📋</div>
+            <div class="finance-title">سجل التحويلات</div>
+            <div class="finance-desc">عرض جميع التحويلات</div>
+          </div>
+        </div>
+
+        <!-- أسعار الصرف -->
+        <div class="section-card" style="margin-top:24px;">
+          <div class="section-card-header">
+            <div class="section-card-title"><span class="icon">💱</span> أسعار الصرف اليوم</div>
+          </div>
+          <div class="section-card-body">
+            <div class="table-container">
+              <table class="data-table exchange-table">
+                <thead>
+                  <tr><th>العملة</th><th>شراء</th><th>بيع</th><th>التغير</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td style="color:var(--text-primary);">🇺🇸 USD</td><td>3.7497</td><td>3.7503</td><td class="rate-change down" style="color:var(--accent-red);">▼ -0.02%</td></tr>
+                  <tr><td style="color:var(--text-primary);">🇪🇺 EUR</td><td>4.0821</td><td>4.0835</td><td class="rate-change up" style="color:var(--accent-gold);">▲ +0.15%</td></tr>
+                  <tr><td style="color:var(--text-primary);">🇬🇧 GBP</td><td>4.7234</td><td>4.7250</td><td class="rate-change up" style="color:var(--accent-gold);">▲ +0.08%</td></tr>
+                  <tr><td style="color:var(--text-primary);">🇦🇪 AED</td><td>1.0212</td><td>1.0218</td><td class="rate-change down" style="color:var(--accent-red);">▼ -0.01%</td></tr>
+                  <tr><td style="color:var(--text-primary);">🇯🇵 JPY</td><td>0.02461</td><td>0.02465</td><td class="rate-change up" style="color:var(--accent-gold);">▲ +0.22%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast"><span class="toast-icon" id="toastIcon">✓</span><span id="toastMessage">تمت العملية بنجاح</span></div>
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        sidebarOverlay.classList.toggle('active');
+      });
+    }
+    if (sidebarOverlay) {
+      sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('active');
+      });
+    }
+    function showToast(message, type) {
+      const toast = document.getElementById('toast');
+      const toastIcon = document.getElementById('toastIcon');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      toast.className = 'toast show toast-' + (type || 'success');
+      if (type === 'success') toastIcon.textContent = '✓';
+      else if (type === 'error') toastIcon.textContent = '✕';
+      else toastIcon.textContent = 'ℹ';
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+  </script>
+</body>
+</html>

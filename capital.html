@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الجزيرة كابيتال | البنك السعودي</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">🏦</div>
+        <div><div class="brand-text">البنك السعودي</div><div class="brand-sub">نظام الخدمات المصرفية</div></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">القائمة الرئيسية</div>
+          <a href="index.html" class="nav-item" data-page="index"><span class="icon">📊</span><span>الرئيسية</span></a>
+          <a href="accounts.html" class="nav-item" data-page="accounts"><span class="icon">💰</span><span>حساباتي</span></a>
+          <a href="cards.html" class="nav-item" data-page="cards"><span class="icon">💳</span><span>البطاقات</span></a>
+          <a href="transfers.html" class="nav-item" data-page="transfers"><span class="icon">⚡</span><span>التحويلات</span></a>
+          <a href="bills.html" class="nav-item" data-page="bills"><span class="icon">📋</span><span>الفواتير</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الخدمات</div>
+          <a href="government.html" class="nav-item" data-page="government"><span class="icon">🏛️</span><span>الخدمات الحكومية</span></a>
+          <a href="financing.html" class="nav-item" data-page="financing"><span class="icon">💼</span><span>التمويل</span></a>
+          <a href="investments.html" class="nav-item" data-page="investments"><span class="icon">📈</span><span>الاستثمارات</span></a>
+          <a href="capital.html" class="nav-item active" data-page="capital"><span class="icon">🏢</span><span>الجزيرة كابيتال</span></a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">الإعدادات</div>
+          <a href="profile.html" class="nav-item" data-page="profile"><span class="icon">👤</span><span>الملف الشخصي</span></a>
+        </div>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <main class="main-content">
+      <header class="top-header">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+          <h1 class="header-title">الجزيرة كابيتال 🏢</h1>
+        </div>
+        <div class="header-actions">
+          <button class="header-btn" onclick="showToast('لا توجد إشعارات جديدة','info')">🔔</button>
+          <button class="header-btn" onclick="showToast('قريباً','info')">⚙️</button>
+          <div class="user-profile" onclick="location.href='profile.html'">
+            <div class="user-avatar">و</div>
+            <div class="user-info"><div class="user-name">الوليد بن طلال</div><div class="user-role">عميل بريميوم</div></div>
+          </div>
+        </div>
+      </header>
+      <div class="page-content">
+        <!-- الإحصائيات -->
+        <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">إجمالي الأصول المدارة</span>
+              <div class="stat-icon gold">🏦</div>
+            </div>
+            <div class="stat-value" style="color:var(--accent-gold-light);">SAR 3.2B</div>
+            <div class="stat-change up">📈 +8.2% هذا العام</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">صناديق الاستثمار</span>
+              <div class="stat-icon blue">📊</div>
+            </div>
+            <div class="stat-value" style="color:var(--accent-blue);">15 صندوق</div>
+            <div class="stat-change up">جميعها متاحة</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">العملاء المؤسسيون</span>
+              <div class="stat-icon purple">👥</div>
+            </div>
+            <div class="stat-value" style="color:var(--accent-purple);">240+</div>
+            <div class="stat-change up">📈 +12% هذا العام</div>
+          </div>
+        </div>
+
+        <!-- منتجات الجزيرة كابيتال -->
+        <div class="cards-grid card-grid-2" style="margin-top:24px;">
+          <div class="section-card">
+            <div class="section-card-header">
+              <div class="section-card-title"><span class="icon">📈</span> الصناديق الاستثمارية</div>
+            </div>
+            <div class="section-card-body">
+              <div class="fund-card">
+                <div class="fund-header">
+                  <div>
+                    <div class="fund-name">صندوق الجزيرة للأسهم السعودية</div>
+                    <div class="fund-tags"><span class="fund-tag">أسهم</span><span class="fund-tag">مخاطر عالية</span></div>
+                  </div>
+                  <div class="fund-return" style="color:var(--accent-gold);">+14.2% سنوياً</div>
+                </div>
+              </div>
+              <div class="fund-card">
+                <div class="fund-header">
+                  <div>
+                    <div class="fund-name">صندوق الجزيرة للدخل الثابت</div>
+                    <div class="fund-tags"><span class="fund-tag">دخل ثابت</span><span class="fund-tag">مخاطر منخفضة</span></div>
+                  </div>
+                  <div class="fund-return" style="color:var(--accent-gold);">+6.8% سنوياً</div>
+                </div>
+              </div>
+              <div class="fund-card">
+                <div class="fund-header">
+                  <div>
+                    <div class="fund-name">صندوق الجزيرة العقاري</div>
+                    <div class="fund-tags"><span class="fund-tag">عقارات</span><span class="fund-tag">مخاطر متوسطة</span></div>
+                  </div>
+                  <div class="fund-return" style="color:var(--accent-gold);">+9.5% سنوياً</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="section-card-header">
+              <div class="section-card-title"><span class="icon">💼</span> الخدمات الاستثمارية</div>
+            </div>
+            <div class="section-card-body">
+              <div class="service-btn" onclick="showToast('جاري التحميل...','info')">
+                <div class="service-btn-icon" style="background:rgba(21,101,192,0.1);">📊</div>
+                <span>إدارة المحافظ الاستثمارية</span>
+              </div>
+              <div class="service-btn" onclick="showToast('جاري التحميل...','info')">
+                <div class="service-btn-icon" style="background:rgba(123,31,162,0.1);">📋</div>
+                <span>استشارات مالية</span>
+              </div>
+              <div class="service-btn" onclick="showToast('جاري التحميل...','info')">
+                <div class="service-btn-icon" style="background:rgba(66,165,245,0.1);">🏛️</div>
+                <span>ترتيب إصدارات الصكوك</span>
+              </div>
+              <div class="service-btn" onclick="showToast('جاري التحميل...','info')">
+                <div class="service-btn-icon" style="background:rgba(26,35,126,0.1);">🏢</div>
+                <span>الاستشارات المؤسسية</span>
+              </div>
+              <div class="service-btn" onclick="showToast('جاري التحميل...','info')">
+                <div class="service-btn-icon" style="background:rgba(21,101,192,0.1);">🌍</div>
+                <span>استثمارات دولية</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- أداء الصناديق -->
+        <div class="section-card" style="margin-top:24px;">
+          <div class="section-card-header">
+            <div class="section-card-title"><span class="icon">📊</span> أداء الصناديق</div>
+          </div>
+          <div class="section-card-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr><th>اسم الصندوق</th><th>العائد السنوي</th><th>المخاطر</th><th>الحد الأدنى</th><th>الحالة</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight:600;">الجزيرة للأسهم السعودية</td>
+                    <td style="color:var(--accent-gold);font-weight:700;">+14.2%</td>
+                    <td><span class="fund-tag" style="background:rgba(245,101,101,0.15);color:var(--accent-red);">عالية</span></td>
+                    <td>SAR 25,000</td>
+                    <td style="color:var(--accent-green);">مفتوح</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600;">الجزيرة للدخل الثابت</td>
+                    <td style="color:var(--accent-gold);font-weight:700;">+6.8%</td>
+                    <td><span class="fund-tag" style="background:rgba(72,187,120,0.15);color:var(--accent-green);">منخفضة</span></td>
+                    <td>SAR 5,000</td>
+                    <td style="color:var(--accent-green);">مفتوح</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600;">الجزيرة العقاري</td>
+                    <td style="color:var(--accent-gold);font-weight:700;">+9.5%</td>
+                    <td><span class="fund-tag" style="background:rgba(66,153,225,0.15);color:var(--accent-blue);">متوسطة</span></td>
+                    <td>SAR 50,000</td>
+                    <td style="color:var(--accent-green);">مفتوح</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600;">الجزيرة للأسهم العالمية</td>
+                    <td style="color:var(--accent-gold);font-weight:700;">+11.3%</td>
+                    <td><span class="fund-tag" style="background:rgba(245,101,101,0.15);color:var(--accent-red);">عالية</span></td>
+                    <td>USD 10,000</td>
+                    <td style="color:var(--accent-gold);">قريباً</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast"><span class="toast-icon" id="toastIcon">✓</span><span id="toastMessage">تمت العملية بنجاح</span></div>
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        sidebarOverlay.classList.toggle('active');
+      });
+    }
+    if (sidebarOverlay) {
+      sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('active');
+      });
+    }
+    function showToast(message, type) {
+      const toast = document.getElementById('toast');
+      const toastIcon = document.getElementById('toastIcon');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      toast.className = 'toast show toast-' + (type || 'success');
+      if (type === 'success') toastIcon.textContent = '✓';
+      else if (type === 'error') toastIcon.textContent = '✕';
+      else toastIcon.textContent = 'ℹ';
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+  </script>
+</body>
+</html>
