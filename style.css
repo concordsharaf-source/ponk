@@ -1,36 +1,47 @@
 :root {
-  /* 🟢 خلفية دولار فاتح */
-  --bg-primary: #F1F8E9;
-  --bg-secondary: #E8F5E9;
+  /* 🟢 خلفية فاتحة ومريحة للعين */
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #F1F5F9;
   --bg-card: #FFFFFF;
-  --bg-hover: #DCEDC8;
+  --bg-hover: #E2E8F0;
   
-  /* 🔵🔷 الأزرق والكحلي والبنفسجي */
-  --border-color: #BBDEFB;
-  --text-primary: #1A237E;
-  --text-secondary: #283593;
-  --text-muted: #5C6BC0;
+  /* 🔵🔷 الأزرق والكحلي والبنفسجي (النصوص والحدود) */
+  --border-color: #CBD5E1;
+  --text-primary: #1E293B;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
   
-  /* 🎨 ألوان القوائم (أزرق → كحلي → بنفسجي) */
-  --accent-gold: #1565C0;
-  --accent-gold-light: #42A5F5;
-  --accent-green: #1A237E;
-  --accent-red: #7B1FA2;
-  --accent-blue: #42A5F5;
-  --accent-purple: #7B1FA2;
+  /* 🎨 ألوان الهوية الأساسية */
+  --accent-blue: #2563EB;
+  --accent-blue-light: #60A5FA;
+  --accent-navy: #1E3A8A;
+  --accent-purple: #7C3AED;
   
-  /* 🟣 تدرج القوائم */
-  --nav-gradient: linear-gradient(135deg, #1565C0, #1A237E, #7B1FA2);
+  /* 🚦 ألوان الحالات والعمليات المالية (وظائف حقيقية) */
+  --accent-gold: #D97706;   /* تنبيهات / تحذير / تميز */
+  --accent-green: #10B981;  /* إيداع / عمليات ناجحة / حالة نشطة */
+  --accent-red: #EF4444;    /* سحب / تنبيهات خطيرة / مصاريف */
   
+  /* 🟣 تدرج القوائم والبطاقات الفاخر */
+  --nav-gradient: linear-gradient(135deg, #1D4ED8, #1E3A8A, #6D28D9);
+  
+  /* 📐 الأبعاد والظلال */
   --sidebar-width: 260px;
   --header-height: 70px;
   --radius: 12px;
   --radius-sm: 8px;
-  --shadow: 0 4px 20px rgba(21, 101, 192, 0.15);
-  --shadow-lg: 0 10px 40px rgba(21, 101, 192, 0.2);
+  --shadow: 0 4px 20px rgba(30, 58, 138, 0.08);
+  --shadow-lg: 0 10px 40px rgba(30, 58, 138, 0.12);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ============================================
+   إعدادات عامة
+   ============================================ */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
 
 html, body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -56,7 +67,7 @@ html, body {
 }
 
 /* ============================================
-   🟦 القائمة الجانبية (سايدبار) - تدرج أزرق→كحلي→بنفسجي
+   🟦 القائمة الجانبية (سايدبار)
    ============================================ */
 .sidebar {
   width: var(--sidebar-width);
@@ -155,12 +166,12 @@ html, body {
 }
 
 /* ============================================
-   🔷 الهيدر (رأس الصفحة) - خلفية بيضاء
+   🔷 الهيدر (رأس الصفحة)
    ============================================ */
 .top-header {
   height: var(--header-height);
   background: #FFFFFF;
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -169,7 +180,7 @@ html, body {
   top: 0;
   z-index: 50;
   width: 100%;
-  box-shadow: 0 2px 10px rgba(21, 101, 192, 0.08);
+  box-shadow: 0 2px 10px rgba(30, 58, 138, 0.04);
 }
 
 .header-title {
@@ -272,7 +283,7 @@ html, body {
   position: relative;
   overflow: hidden;
   width: 100%;
-  box-shadow: 0 2px 8px rgba(21, 101, 192, 0.06);
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.04);
 }
 
 .stat-card::before {
@@ -304,15 +315,15 @@ html, body {
   font-size: 20px;
 }
 
-.stat-icon.gold { background: rgba(21, 101, 192, 0.1); color: var(--accent-gold); }
-.stat-icon.green { background: rgba(26, 35, 126, 0.1); color: var(--accent-green); }
-.stat-icon.blue { background: rgba(66, 165, 245, 0.1); color: var(--accent-blue); }
-.stat-icon.purple { background: rgba(123, 31, 162, 0.1); color: var(--accent-purple); }
-.stat-icon.red { background: rgba(123, 31, 162, 0.1); color: var(--accent-red); }
+.stat-icon.gold { background: rgba(217, 119, 6, 0.1); color: var(--accent-gold); }
+.stat-icon.green { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); }
+.stat-icon.blue { background: rgba(37, 99, 235, 0.1); color: var(--accent-blue); }
+.stat-icon.purple { background: rgba(124, 58, 237, 0.1); color: var(--accent-purple); }
+.stat-icon.red { background: rgba(239, 68, 68, 0.1); color: var(--accent-red); }
 
 .stat-value { font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
 .stat-change { font-size: 12px; display: flex; align-items: center; gap: 4px; }
-.stat-change.up { color: var(--accent-gold); }
+.stat-change.up { color: var(--accent-green); }
 .stat-change.down { color: var(--accent-red); }
 
 /* ============================================
@@ -335,7 +346,7 @@ html, body {
   border-radius: var(--radius);
   overflow: hidden;
   width: 100%;
-  box-shadow: 0 2px 8px rgba(21, 101, 192, 0.06);
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.04);
 }
 
 .section-card-header {
@@ -399,7 +410,8 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  background: rgba(21, 101, 192, 0.1);
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-blue);
 }
 
 .quick-service-label { font-size: 13px; font-weight: 600; text-align: center; }
@@ -435,7 +447,8 @@ html, body {
   justify-content: center;
   font-size: 20px;
   flex-shrink: 0;
-  background: rgba(66, 165, 245, 0.1);
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-blue);
 }
 
 .news-content { flex: 1; min-width: 0; }
@@ -472,14 +485,15 @@ html, body {
   justify-content: center;
   font-size: 24px;
   flex-shrink: 0;
-  background: rgba(21, 101, 192, 0.1);
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-blue);
 }
 
 .account-info { flex: 1; min-width: 0; }
 .account-name { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
 .account-number { font-size: 13px; color: var(--text-muted); font-family: monospace; }
 .account-balance { text-align: left; flex-shrink: 0; }
-.account-amount { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+.account-amount { font-size: 18px; font-weight: 700; color: var(--accent-navy); }
 .account-status { font-size: 12px; color: var(--accent-green); }
 
 /* ============================================
@@ -525,11 +539,11 @@ html, body {
   font-size: 14px;
   flex-shrink: 0;
 }
-.txn-icon.in { background: rgba(21, 101, 192, 0.1); color: var(--accent-gold); }
-.txn-icon.out { background: rgba(123, 31, 162, 0.1); color: var(--accent-red); }
+.txn-icon.in { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); }
+.txn-icon.out { background: rgba(239, 68, 68, 0.1); color: var(--accent-red); }
 
 .txn-amount { font-weight: 700; font-size: 15px; }
-.txn-amount.in { color: var(--accent-gold); }
+.txn-amount.in { color: var(--accent-green); }
 .txn-amount.out { color: var(--accent-red); }
 
 /* ============================================
@@ -544,6 +558,7 @@ html, body {
   overflow: hidden;
   width: 100%;
   color: white;
+  box-shadow: var(--shadow-lg);
 }
 
 .credit-card::after {
@@ -553,14 +568,14 @@ html, body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .card-chip {
   width: 40px;
   height: 30px;
-  background: linear-gradient(135deg, #FFD700, #FFA000);
+  background: linear-gradient(135deg, #F59E0B, #D97706);
   border-radius: 6px;
   margin-bottom: 20px;
 }
@@ -578,7 +593,7 @@ html, body {
 .card-details { display: flex; justify-content: space-between; align-items: flex-end; }
 .card-holder { font-size: 14px; color: rgba(255,255,255,0.9); }
 .card-expiry { font-size: 12px; color: rgba(255,255,255,0.7); }
-.card-brand { font-size: 24px; font-weight: 700; color: #FFD700; }
+.card-brand { font-size: 22px; font-weight: 700; color: #F59E0B; }
 
 /* ============================================
    📊 شريط التقدم
@@ -604,7 +619,7 @@ html, body {
    ============================================ */
 .exchange-table th, .exchange-table td { text-align: center; }
 .exchange-table td:first-child { text-align: right; font-weight: 600; }
-.rate-change.up { color: var(--accent-gold); }
+.rate-change.up { color: var(--accent-green); }
 .rate-change.down { color: var(--accent-red); }
 
 /* ============================================
@@ -637,13 +652,14 @@ html, body {
   justify-content: center;
   font-size: 20px;
   flex-shrink: 0;
-  background: rgba(21, 101, 192, 0.1);
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-blue);
 }
 
 .bill-info { flex: 1; min-width: 0; }
 .bill-name { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
 .bill-due { font-size: 12px; color: var(--text-muted); }
-.bill-amount { font-size: 16px; font-weight: 700; color: var(--accent-gold); flex-shrink: 0; }
+.bill-amount { font-size: 16px; font-weight: 700; color: var(--text-primary); flex-shrink: 0; }
 
 /* ============================================
    🗂️ الخدمات
@@ -677,7 +693,8 @@ html, body {
   justify-content: center;
   font-size: 22px;
   flex-shrink: 0;
-  background: rgba(123, 31, 162, 0.1);
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--accent-purple);
 }
 
 .service-cat-info { flex: 1; min-width: 0; }
@@ -752,7 +769,8 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: 28px;
-  background: rgba(21, 101, 192, 0.1);
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-blue);
 }
 
 .finance-title { font-size: 15px; font-weight: 700; color: var(--text-primary); }
@@ -768,7 +786,7 @@ html, body {
 }
 
 /* ============================================
-   📈 الصناديق
+   📈 الصناديق الاستثمارية
    ============================================ */
 .fund-card {
   padding: 20px;
@@ -814,11 +832,11 @@ html, body {
 .fund-return {
   font-size: 18px;
   font-weight: 700;
-  color: var(--accent-gold);
+  color: var(--accent-green);
   flex-shrink: 0;
 }
 
-.stock-change.up { color: var(--accent-gold); }
+.stock-change.up { color: var(--accent-green); }
 .stock-change.down { color: var(--accent-red); }
 
 /* ============================================
@@ -834,7 +852,7 @@ html, body {
   border: 1px solid var(--border-color);
   margin-bottom: 24px;
   width: 100%;
-  box-shadow: 0 2px 8px rgba(21, 101, 192, 0.06);
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.04);
 }
 
 .profile-avatar {
@@ -860,7 +878,7 @@ html, body {
   gap: 6px;
   font-size: 13px;
   color: var(--accent-gold);
-  background: rgba(21, 101, 192, 0.1);
+  background: rgba(217, 119, 6, 0.1);
   padding: 4px 12px;
   border-radius: 20px;
 }
@@ -884,7 +902,7 @@ html, body {
 .profile-field-value { font-size: 15px; font-weight: 600; color: var(--text-primary); }
 
 /* ============================================
-   🔘 الأزرار
+   🔘 الأزرار والخدمات
    ============================================ */
 .service-btn {
   display: flex;
@@ -917,7 +935,8 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  background: rgba(21, 101, 192, 0.1);
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-blue);
   flex-shrink: 0;
 }
 
@@ -971,7 +990,7 @@ html, body {
 
 .step.active .step-number {
   background: var(--nav-gradient);
-  border-color: var(--accent-gold);
+  border-color: var(--accent-blue);
   color: white;
 }
 
@@ -982,10 +1001,10 @@ html, body {
 }
 
 .step-label { font-size: 12px; color: var(--text-muted); }
-.step.active .step-label { color: var(--accent-gold); font-weight: 600; }
+.step.active .step-label { color: var(--accent-blue); font-weight: 600; }
 
 /* ============================================
-   📝 النماذج
+   📝 النماذج المدخلة (Forms)
    ============================================ */
 .form-group { margin-bottom: 20px; width: 100%; }
 .form-label {
@@ -1010,8 +1029,8 @@ html, body {
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
   outline: none;
-  border-color: var(--accent-gold);
-  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .form-input::placeholder { color: var(--text-muted); }
@@ -1042,7 +1061,7 @@ html, body {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(21, 101, 192, 0.3);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
 }
 
 .btn-secondary {
@@ -1057,7 +1076,7 @@ html, body {
 }
 
 .btn-danger {
-  background: rgba(123, 31, 162, 0.1);
+  background: rgba(239, 68, 68, 0.1);
   color: var(--accent-red);
   border: 1px solid var(--accent-red);
 }
@@ -1070,7 +1089,7 @@ html, body {
 .btn-block { width: 100%; }
 
 /* ============================================
-   📦 صناديق الملخص
+   📦 صناديق الملخص (مكتملة ومصححة)
    ============================================ */
 .summary-box {
   background: var(--bg-secondary);
@@ -1083,38 +1102,70 @@ html, body {
 .summary-row {
   display: flex;
   justify-content: space-between;
-  padding: 10px
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .summary-row:last-child {
   border-bottom: none;
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--accent-gold);
+  padding-bottom: 0;
 }
 
-/* ============================================
-   🔢 OTP
-   ============================================ */
-.otp-inputs {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin: 20px 0;
-  flex-wrap: wrap;
+.summary-label {
+  font-size: 13px;
+  color: var(--text-muted);
 }
 
-.otp-input {
-  width: 50px;
-  height: 56px;
-  text-align: center;
-  font-size: 24px;
+.summary-value {
+  font-size: 14px;
   font-weight: 700;
-  background: var(--bg-card);
-  border: 2px solid var(--border-color);
-  border-radius: var(--radius-sm);
   color: var(--text-primary);
 }
 
-.otp-input:focus {
-  border-color: var(--accent-gold);
+/* ============================================
+   📱 التجاوب مع الشاشات والهواتف (Media Queries)
+   ============================================ */
+@media (max-width: 1200px) {
+  .stats-grid, .card-grid-4, .quick-services, .gov-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(100%); /* إخفاء السايدبار على الجوال تلقائياً */
+  }
+  
+  .sidebar.active {
+    transform: translateX(0); /* إظهارها عند إضافة كلاس active عبر JS */
+  }
+
+  .main-content {
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .top-header {
+    padding: 0 16px;
+  }
+
+  .page-content {
+    padding: 16px;
+  }
+
+  .stats-grid, .card-grid-2, .quick-services, .gov-grid, .profile-grid, .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .transfer-steps {
+    gap: 16px;
+  }
+
+  .step:not(:last-child)::after {
+    display: none;
+  }
+}
